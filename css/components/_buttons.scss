@@ -1,0 +1,33 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var.$secondary;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  p {
+    margin-bottom: 0;
+    flex-basis: 85%;
+    color: var.$white;
+    font-weight: bold;
+  }
+  i {
+    color: var.$secondary;
+    font-size: 2rem;
+    transition: all 0.2s ease;
+    flex-basis: 15%;
+    text-align: right;
+  }
+}
+.filter.active {
+  background-color: var.$accent;
+}
+input[type="checkbox"] {
+  display: none;
+}

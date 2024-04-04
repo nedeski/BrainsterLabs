@@ -1,0 +1,76 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.banner {
+  position: relative;
+  height: 60vh;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.5;
+
+  .bg-video-content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.header-text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.heading-primary {
+  color: var.$white;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+
+  .heading-primary-left,
+  .heading-primary-right {
+    display: block;
+    font-size: 2.3rem;
+    font-weight: 700;
+    letter-spacing: 0.5rem;
+  }
+
+  .heading-primary-left {
+    animation: moveInLeft 1s ease;
+  }
+
+  .heading-primary-right {
+    animation: moveInRight 1s ease;
+  }
+}
+
+@media (min-width: 600px) {
+  .heading-primary {
+    .heading-primary-left,
+    .heading-primary-right {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 1.2rem;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  .heading-primary {
+    .heading-primary-left,
+    .heading-primary-right {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: 1.55rem;
+    }
+  }
+}

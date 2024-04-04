@@ -1,0 +1,226 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+nav {
+  background-color: var.$primary;
+  padding: 0.5em 1.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 2px 3px 8px 2px rgba(30, 30, 30, 0.3);
+  // LOGO
+  .brand-logo {
+    display: block;
+    width: 50px;
+
+    .logo-text {
+      font-size: 8px;
+      color: var.$black;
+      text-decoration: none;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+  //  TOGGLE
+  .navbar-toggle {
+    padding: 5px 0;
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .bar {
+      display: block;
+      background-color: var.$secondary;
+      height: 6px;
+      border-radius: 3px;
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+    .top {
+      width: 100%;
+    }
+    .middle {
+      width: 75%;
+    }
+    .bottom {
+      width: 50%;
+    }
+  }
+  // MENU WRAPPER
+  .menu-wrapper {
+    visibility: hidden;
+    background-color: var.$secondary;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    right: 0;
+    transition: all 0.3s linear;
+    clip-path: circle(100px at 100% -20%);
+    z-index: 999;
+  }
+  .menu-wrapper.open {
+    visibility: visible;
+    clip-path: circle(2100px at 90% -10%);
+  }
+  .menu {
+    padding: 0 1.4em;
+  }
+  // CLOSE BUTTON
+  .close-btn {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    padding: 0.3em;
+    justify-content: center;
+    align-items: center;
+    margin: 0.4em 0.5em 4em auto;
+
+    .bar {
+      width: 100%;
+      height: 5px;
+      background-color: var.$white;
+      display: block;
+      border-radius: 3px;
+    }
+    .bar.one {
+      transform: rotate(45deg);
+    }
+    .bar.two {
+      transform: rotate(-90deg);
+    }
+  }
+  .nav-item {
+    padding: 0.5em 0;
+  }
+  .nav-link {
+    display: inline-block;
+    color: var.$white;
+    font-weight: 600;
+    padding: 0.5em 0;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 0;
+      height: 2px;
+      background-color: var.$white;
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transition: all 0.3s ease;
+    }
+    &:hover::after {
+      width: 100%;
+      left: 0;
+    }
+  }
+  .nav-btn {
+    @include mix.button;
+    &:hover {
+      background-color: transparent;
+      // color:$secondary;
+    }
+  }
+}
+
+// TABLET
+@media (min-width: 600px) {
+  .menu-wrapper {
+    text-align: right;
+  }
+  .filters {
+    display: flex;
+    .filter {
+      flex-basis: 33.3333%;
+    }
+  }
+}
+
+// LAPTOP  & DESKTOP
+@media (min-width: 1024px) {
+  nav {
+    font-size: 15px;
+    padding: 1.5em 2.5em 1.5em 3em;
+    .brand-logo {
+      width: 60px;
+      margin-right: 1.5em;
+    }
+    .menu-wrapper {
+      position: static;
+      visibility: visible;
+      height: auto;
+      clip-path: none;
+      width: auto;
+      background-color: transparent;
+      text-align: left;
+    }
+    .navbar-toggle {
+      display: none;
+    }
+    .close-btn {
+      display: none;
+    }
+
+    .nav-link {
+      color: var.$secondary;
+      padding: 0;
+      &::after {
+        background-color: var.$secondary;
+      }
+    }
+    .nav-item {
+      padding: 0;
+    }
+    .nav-link::after {
+      bottom: -7px;
+    }
+
+    .nav-btn {
+      font-weight: bold;
+      margin-left: 1em;
+      margin: 0;
+    }
+    .nav-btn:hover {
+      color: var.$secondary;
+    }
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      .nav-item:not(:last-child) {
+        margin-right: 1.5em;
+      }
+      .nav-item:last-child {
+        margin-left: 1.5em;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  nav {
+    .menu {
+      text-align: left;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  nav {
+    font-size: 16px;
+    .menu {
+      .nav-item:not(:last-child) {
+        margin-right: 2em;
+      }
+    }
+  }
+}

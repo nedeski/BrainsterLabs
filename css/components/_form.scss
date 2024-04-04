@@ -1,0 +1,164 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.form-header {
+  margin: 6rem 0 3rem;
+  h1 {
+    font-weight: 700;
+    font-size: 2.3rem;
+    text-align: center;
+    color: var.$secondary;
+  }
+}
+.form-wrapper {
+  padding: 0 1.5rem;
+  form {
+    color: var.$secondary;
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label,
+    input {
+      display: block;
+    }
+    label {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+    input {
+      border-radius: 5px;
+      border: none;
+      width: 100%;
+      padding: 1.2rem;
+    }
+    input[placeholder] {
+      font-style: italic;
+    }
+
+    input[type="submit"] {
+      color: var.$white;
+      background-color: var.$danger;
+      border: none;
+      padding: 1rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      appearance: none;
+      opacity: 1;
+    }
+    .custom-select {
+      position: relative;
+      font-size: 0.8rem;
+      font-weight: bold;
+      width: 100%;
+      margin-bottom: 15rem;
+    }
+
+    .custom-select select {
+      display: none; /*hide original SELECT element: */
+    }
+
+    .select-selected {
+      background-color: var.$white;
+    }
+
+    /* Style the arrow inside the select element: */
+    .select-selected:after {
+      position: absolute;
+      content: "";
+      top: 20px;
+      right: 10px;
+      width: 5px;
+      height: 5px;
+      border: solid var.$black;
+      border-width: 0 3px 3px 0;
+      border-radius: 3px;
+      transform: rotate(45deg);
+    }
+
+    /* style the items (options), including the selected item: */
+    .select-items div,
+    .select-selected {
+      color: var.$black;
+      padding: 16px 16px;
+      border: 1px solid var.$black;
+      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* Style items (options): */
+    .select-items {
+      position: absolute;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      background-color: var.$white;
+      top: 120%;
+      left: 0;
+      right: 0;
+      z-index: 99;
+    }
+
+    /* Hide the items when the select box is closed: */
+    .select-hide {
+      display: none;
+    }
+
+    .select-items div:hover,
+    .same-as-selected {
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    .error {
+      margin-bottom: 0.3rem;
+      color: var.$danger;
+      display: none;
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+    .error.show {
+      display: block;
+    }
+  }
+}
+
+// TABLET
+@media (min-width: 600px) {
+  .form-wrapper {
+    padding-top: 5rem;
+    form {
+      display: flex;
+      flex-wrap: wrap;
+
+      .form-group {
+        flex: 0 1 50%;
+        padding: 1em;
+        margin-bottom: 0;
+      }
+      input[type="submit"] {
+        margin-top: 1.4rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .form-header {
+    h1 {
+      font-size: 4rem;
+      margin: 4rem 0 4rem;
+    }
+  }
+  .form-wrapper {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .form-wrapper {
+    width: 70%;
+  }
+}
